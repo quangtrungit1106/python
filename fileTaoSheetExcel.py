@@ -1,6 +1,5 @@
 import xlwings as xw
 import win32com.client
-import locale
 # Khai báo các hằng số từ thư viện win32com.client.constants
 xlEdgeBottom = win32com.client.constants.xlEdgeBottom
 xlEdgeLeft = win32com.client.constants.xlEdgeLeft
@@ -198,7 +197,6 @@ def GiaoDienSheet1(sheet, congty):
     # Chọn toàn bộ dữ liệu trong sheet
     data_range = sheet.used_range
     data_range.api.Font.Name = "Times New Roman"
-    print (str1)
     sheet.range("M8:AP67").number_format = str1
     sheet.range("M68:V70").number_format = "0.0000%"
     sheet.range("AG68:AP68").number_format = "0.0000%"

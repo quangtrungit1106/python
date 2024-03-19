@@ -26,7 +26,6 @@ def lay_data_nguon(wb, congty):
 
 # In thông tin
 def in_thong_tin_nguon(data, new_sheet, congty):
-    print("Đang đọc dữ liệu, Vui lòng đợi")
     for cty, data_cty in data.items():
         # Dùng để ghi vào file excel
         row = 7
@@ -46,10 +45,10 @@ def in_thong_tin_nguon(data, new_sheet, congty):
             new_sheet.range(row, stt_cot).value = return_moi # Cột data cua cong ty
             row += 1
             stt_dong += 1
+            
 # Tính toán return và mean
 def tinh_toan_return_mean(new_sheet):
     data = new_sheet.range(pham_vi_data_dasapxep).value
-    print("Đang tính toán return và mean. Vui lòng đợi")
     # Dùng để ghi vào file excel
     row = 7
     
@@ -60,14 +59,11 @@ def tinh_toan_return_mean(new_sheet):
             sum_return += (data[dong][cot] - data[dong-1][cot])/data[dong-1][cot]
             new_sheet.range(row+dong, stt_cot+cot).value = (data[dong][cot] - data[dong-1][cot])/data[dong-1][cot]
         new_sheet.range(row+61, stt_cot+cot).value = sum_return / 60    # mean
-    
-    print("Đã xong tính toán return")
 
 # Tính toán rimean
 def tinh_toan_rimean_var(new_sheet):
     data = new_sheet.range(pham_vi_data_return).value
     data_tong = new_sheet.range(pham_vi_data_tong1).value
-    print("Đang tính toán ri-mean, Vui lòng đợi")
     # Dùng để ghi vào file excel
     row = 8
     
@@ -82,11 +78,9 @@ def tinh_toan_rimean_var(new_sheet):
         new_sheet.range(row+dong+1, stt_cot+20+cot).value = sum_return # tong
         new_sheet.range(row+dong+2, stt_cot+cot).value = sum_return / 60 #var
         new_sheet.range(row+dong+3, stt_cot+cot).value = math.sqrt(sum_return / 60)
-    print("Đã xong tính toán return") 
 
 # Tính toán cov cor
 def tinh_toan_cov_cor(new_sheet, tohop_chap3):
-    print("Đang tính toán ri-mean, Vui lòng đợi")
     data = new_sheet.range(pham_vi_data_rimean).value
     data_tong = new_sheet.range(pham_vi_data_tong1).value
     
@@ -106,8 +100,6 @@ def tinh_toan_cov_cor(new_sheet, tohop_chap3):
             new_sheet.range(row+15, col + y).value = cor
         row += 1
     
-            
-    print("Đã xong tính toán cov, cor")
 def main(wb, ten_phan1, congty):
     # Tổ hợp chập 3 của các công ty
     tohop_chap3 = list(itertools.combinations(congty, 3))

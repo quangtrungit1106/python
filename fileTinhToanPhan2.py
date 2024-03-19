@@ -2,15 +2,13 @@ import xlwings as xw
 import itertools
 import math
 import scipy.optimize as optimize
-
 import fileTaoSheetExcel
-rf = 0.07
+rf = 0
 def in_thong_tin(sheet, sheet1, congty, tohop_chap3, wb):
     
     data_rimean = sheet1.range("AG68:AP68").value
     data_return = sheet1.range("M68:V70").value
     data_cov = sheet1.range("M76:V85").value
-    print("Đang đọc dữ liệu, Vui lòng đợi")
     row = 8
     stt_dong = 1
     for tohop in tohop_chap3:
@@ -52,10 +50,10 @@ def tinh_sharpe(x, row_data):
 
 def dieu_kien_1(x):
     return x[0] + x[1] + x[2] - 1  # w1 + w2 + w3 = 1
+
 def dieu_kien_2(x):
     min_percentage = 0.05  # 5%
     return min(x) - min_percentage #
-    #return min(x) - 1e-5
 
 def solver(row_data):
     initial_guess = [0.5, 0.3, 0.2]
@@ -66,7 +64,6 @@ def solver(row_data):
     return -result.fun, w1, w2, w3
 
 def tinh_toan_output(sheet, congty):
-    print("Đang tính toán Output")
     data = sheet.range("A8:T127").value
     row = 8
     max_sharpe = 0
@@ -99,6 +96,7 @@ def tinh_toan_output(sheet, congty):
     max_rowdata = sheet.range(pham_vi).value
     sheet.range(pham_vi).api.Font.Bold = True
     return max_rowdata
+
 def main(wb, sheet1, ten_phan2, congty):
     # Tổ hợp chập 3 của các công ty
     tohop_chap3 = list(itertools.combinations(congty, 3))
