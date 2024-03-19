@@ -1,5 +1,6 @@
 import xlwings as xw
 import win32com.client
+import locale
 # Khai báo các hằng số từ thư viện win32com.client.constants
 xlEdgeBottom = win32com.client.constants.xlEdgeBottom
 xlEdgeLeft = win32com.client.constants.xlEdgeLeft
@@ -7,6 +8,8 @@ xlEdgeRight = win32com.client.constants.xlEdgeRight
 xlEdgeTop = win32com.client.constants.xlEdgeTop
 xlInsideHorizontal = win32com.client.constants.xlInsideHorizontal
 xlInsideVertical = win32com.client.constants.xlInsideVertical
+
+str1 = ""
 
 
 def TaoSheet(wb, tensheet):
@@ -195,7 +198,8 @@ def GiaoDienSheet1(sheet, congty):
     # Chọn toàn bộ dữ liệu trong sheet
     data_range = sheet.used_range
     data_range.api.Font.Name = "Times New Roman"
-    sheet.range("M8:AP67").number_format = "0.0000%"
+    print (str1)
+    sheet.range("M8:AP67").number_format = str1
     sheet.range("M68:V70").number_format = "0.0000%"
     sheet.range("AG68:AP68").number_format = "0.0000%"
     sheet.range("E76:F195").number_format = "0.0000%"
@@ -296,7 +300,7 @@ def GiaoDienSheet3(sheet):
     sheet.range("T6:T7").api.Merge()
     sheet.range("O6:Q7").color = (198, 224, 180)   #xanh
     sheet.range("R6:T7").color = (248, 203, 173) # cam
-    sheet.range("O6:T7").value = ["W1", "W2", "W3", "E(rp)", "σp", "Sharpe ratio"]
+    sheet.range("O6:T7").value = ["W1 (Stock 1)", "W2 (Stock 2)", "W3 (Stock 3)", "E(rp)", "σp", "Sharpe ratio"]
     sheet.range("A5:T7").api.Font.Bold = True
     
     bang1.api.HorizontalAlignment = -4108
@@ -307,7 +311,88 @@ def GiaoDienSheet3(sheet):
     bang1.api.Borders(10).LineStyle = 1  # Đường viền bên phải
     bang1.api.Borders(11).LineStyle = 1  # Đường viền nội bộ dọc
     bang1.api.Borders(12).LineStyle = 1  # Đường viền nội bộ ngang
+
+    # Bảng 2: assuming
+    bang2 = sheet.range("C11:D12")
+    sheet.range("C11:D11").api.Merge()
+    sheet.range("C11:D11").value = "Assuming"
+    sheet.range("C11:D11").api.Font.Bold = True
+    sheet.range("C11:D11").color = (248, 203, 173) #cam
+    sheet.range("C12:C12").value = "A = "
+    sheet.range("C12:C12").color = (255, 217, 102) #vang
+    
+    bang2.api.HorizontalAlignment = -4108
+    bang2.api.VerticalAlignment = -4108
+    bang2.api.Borders(7).LineStyle = 1  # Đường viền bên trái
+    bang2.api.Borders(8).LineStyle = 1  # Đường viền trên cùng
+    bang2.api.Borders(9).LineStyle = 1  # Đường viền dưới cùng
+    bang2.api.Borders(10).LineStyle = 1  # Đường viền bên phải
+    bang2.api.Borders(11).LineStyle = 1  # Đường viền nội bộ dọc
+    bang2.api.Borders(12).LineStyle = 1  # Đường viền nội bộ ngang
+
+    # Bảng 3: y vs 1-y
+    bang3 = sheet.range("F11:G13")
+    sheet.range("F11:F11").value = "y"
+    sheet.range("F12:F12").value = "1 - y"
+    sheet.range("F11:F13").color = (248, 203, 173) #cam
+    sheet.range("F11:F13").api.Font.Bold = True
+
+    bang3.api.HorizontalAlignment = -4108
+    bang3.api.VerticalAlignment = -4108
+    bang3.api.Borders(7).LineStyle = 1  # Đường viền bên trái
+    bang3.api.Borders(8).LineStyle = 1  # Đường viền trên cùng
+    bang3.api.Borders(9).LineStyle = 1  # Đường viền dưới cùng
+    bang3.api.Borders(10).LineStyle = 1  # Đường viền bên phải
+    bang3.api.Borders(11).LineStyle = 1  # Đường viền nội bộ dọc
+    bang3.api.Borders(12).LineStyle = 1  # Đường viền nội bộ ngang
+
+    # Bảng 4: E(rc), oc, U
+    bang4 = sheet.range("F15:G17")
+    sheet.range("F15:F15").value = "E(rc)"
+    sheet.range("F16:F16").value = "σc"
+    sheet.range("F17:F17").value = "U"
+    sheet.range("F15:F17").color = (248, 203, 173) #cam
+    sheet.range("F15:F17").api.Font.Bold = True
+    
+    bang4.api.HorizontalAlignment = -4108
+    bang4.api.VerticalAlignment = -4108
+    bang4.api.Borders(7).LineStyle = 1  # Đường viền bên trái
+    bang4.api.Borders(8).LineStyle = 1  # Đường viền trên cùng
+    bang4.api.Borders(9).LineStyle = 1  # Đường viền dưới cùng
+    bang4.api.Borders(10).LineStyle = 1  # Đường viền bên phải
+    bang4.api.Borders(11).LineStyle = 1  # Đường viền nội bộ dọc
+    bang4.api.Borders(12).LineStyle = 1  # Đường viền nội bộ ngang
+
+    # Bảng 5: 
+    bang5 = sheet.range("I11:K16")
+    sheet.range("I11:J11").api.Merge()
+    sheet.range("I11:J11").value = "Capital"
+    sheet.range("I12:J12").api.Merge()
+    sheet.range("I12:J12").value = "The risk-free asset"
+    sheet.range("I13:J13").api.Merge()
+    sheet.range("I13:J13").value = "The risky portfolio"
+    sheet.range("I14:J14").api.Merge()
+    sheet.range("I15:J15").api.Merge()
+    sheet.range("I16:J16").api.Merge()
+    sheet.range("I11:J16").color = (248, 203, 173) #cam
+    sheet.range("I11:J16").api.Font.Bold = True
+
+    sheet.range("K14:K16").color = (198, 224, 180)
+    
+    bang5.api.HorizontalAlignment = -4108
+    bang5.api.VerticalAlignment = -4108
+    bang5.api.Borders(7).LineStyle = 1  # Đường viền bên trái
+    bang5.api.Borders(8).LineStyle = 1  # Đường viền trên cùng
+    bang5.api.Borders(9).LineStyle = 1  # Đường viền dưới cùng
+    bang5.api.Borders(10).LineStyle = 1  # Đường viền bên phải
+    bang5.api.Borders(11).LineStyle = 1  # Đường viền nội bộ dọc
+    bang5.api.Borders(12).LineStyle = 1  # Đường viền nội bộ ngang
+    
     data_range = sheet.used_range
     data_range.api.Font.Name = "Times New Roman"
-    sheet.range("E8:T127").number_format = "0.0000%"
-    sheet.range("O8:Q127").number_format = "0%"
+    sheet.range("E8:T8").number_format = "0.0000%"
+    sheet.range("G11:G12").number_format = "0.0000%"
+    sheet.range("G15:G17").number_format = "0.0000%"
+    sheet.range("K12:K16").number_format = "0.00"
+    sheet.range("O8:Q8").number_format = "0%"
+    sheet.range("G13:G13").number_format = "0%"
