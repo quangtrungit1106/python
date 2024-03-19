@@ -21,8 +21,7 @@ if __name__ == "__main__":
         if sheet.name == ten_phan1:
             sheet1 = sheet
     dataSharpeMax = fileTinhToanPhan2.main(wb, sheet1 ,ten_phan2, congty)
-'''
-    for sheet in wb.sheets:
+    '''for sheet in wb.sheets:
         if sheet.name == ten_phan2:
             sheet2 = sheet
     fileTinhToanPhan3.main(wb, sheet2 ,ten_phan3, dataSharpeMax)
