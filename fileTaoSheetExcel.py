@@ -198,11 +198,11 @@ def GiaoDienSheet1(sheet, congty):
     data_range = sheet.used_range
     data_range.api.Font.Name = "Times New Roman"
     sheet.range("M8:AP67").number_format = str1
-    sheet.range("M68:V70").number_format = "0.0000%"
-    sheet.range("AG68:AP68").number_format = "0.0000%"
-    sheet.range("E76:F195").number_format = "0.0000%"
-    sheet.range("M76:V85").number_format = "0.0000%"
-    sheet.range("M91:V100").number_format = "0.0000"
+    sheet.range("M68:V70").number_format = str1
+    sheet.range("AG68:AP68").number_format = str1
+    sheet.range("E76:F195").number_format = str1
+    sheet.range("M76:V85").number_format = str1
+    sheet.range("M91:V100").number_format = str1[0:6]
 def GiaoDienSheet2(sheet, congty):
     # Bảng thông tin
     bang1 = sheet.range("A5:T127")
@@ -258,7 +258,7 @@ def GiaoDienSheet2(sheet, congty):
     # Chọn toàn bộ dữ liệu trong sheet
     data_range = sheet.used_range
     data_range.api.Font.Name = "Times New Roman"
-    sheet.range("E8:T127").number_format = "0.0000%"
+    sheet.range("E8:T127").number_format = str1
     sheet.range("O8:Q127").number_format = "0%"
     
 def GiaoDienSheet3(sheet):
@@ -388,9 +388,9 @@ def GiaoDienSheet3(sheet):
     
     data_range = sheet.used_range
     data_range.api.Font.Name = "Times New Roman"
-    sheet.range("E8:T8").number_format = "0.0000%"
-    sheet.range("G11:G12").number_format = "0.0000%"
-    sheet.range("G15:G17").number_format = "0.0000%"
-    sheet.range("K12:K16").number_format = "0.00"
+    sheet.range("E8:T8").number_format = str1
+    sheet.range("G11:G12").number_format = str1
+    sheet.range("G15:G17").number_format = str1
+    sheet.range("K12:K16").number_format = str1[0:4]
     sheet.range("O8:Q8").number_format = "0%"
     sheet.range("G13:G13").number_format = "0%"

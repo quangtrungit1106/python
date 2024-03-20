@@ -29,7 +29,7 @@ if __name__ == "__main__":
             fileTaoSheetExcel.str1 = "0,0000%"
             break
     rf = float(input("Nhập rf = "))
-    fileTinhToanPhan2.rf = rf
+    fileTinhToanPhan2.rf = rf / 100
     A = int(input("Nhập A = "))
     fileTinhToanPhan3.A = A
     
